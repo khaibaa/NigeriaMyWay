@@ -2,7 +2,7 @@
 
 - **Front-end:** React + Vite
 - **UI Library:** [shadcn/ui](https://ui.shadcn.com/)
-- **CSS Styling:** [tailwind](https://tailwindcss.com/)
+- **CSS Styling:** [tailwindcss](https://tailwindcss.com/)
 
 ### Installations
 
