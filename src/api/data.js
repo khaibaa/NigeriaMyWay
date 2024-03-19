@@ -8,10 +8,10 @@ async function getData() {
       data: { data },
     } = await axios.get(url, {
       params: {
-        tr_longitude: "109.262909",
-        tr_latitude: "12.346705",
-        bl_longitude: "109.095887",
-        bl_latitude: "12.113245",
+        tr_longitude: '7.607441828272932',
+        tr_latitude: '9.261942529803623',
+        bl_longitude: '7.064271490467744',
+        bl_latitude: '8.843155672925835',
         currency: "USD",
         lunit: "km",
         lang: "en_US",
