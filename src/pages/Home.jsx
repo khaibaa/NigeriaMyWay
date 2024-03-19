@@ -7,8 +7,17 @@ import MultiDayTours from "@/components/MultiDayTours.jsx"
 import MyWishList from "@/components/MyWishList.jsx"
 import Faq from "@/components/Faq.jsx"
 import Footer from "@/components/Footer.jsx"
+import getData from "@/api/data.js"
+import { useState, useEffect } from "react"
 
 export default function Home() {
+    const [places, setPlaces] = useState([])
+
+    useEffect(() => {
+        getData().then((data) => {
+            setPlaces(data)
+        })
+    }, [])
 
     return (
         <div className="pb-5 box-border overflow-x-hidden overflow-y-scroll h-screen">
