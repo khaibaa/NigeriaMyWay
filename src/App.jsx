@@ -1,30 +1,48 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import Discover from "./pages/Discover";
-import Wishlist from "./pages/Wishlist";
-import TourGroups from "./pages/TourGroup";
-import Profile from "./pages/Profile";
+import Restaurant from "./pages/Restaurant";
+import GoogleMap from "./pages/Map";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import ContactUs from "./pages/ContactUs";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import Root from "./pages/Root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        index: true,
+      },
+      {
+        path: "/restaurant",
+        element: <Restaurant />,
+      },
+      {
+        path: "/map",
+        element: <GoogleMap />,
+      },
+      {
+        path: "/contactus",
+        element: <ContactUs />,
+      },
+      {
+        path: "/t&c",
+        element: <TermsAndConditions />,
+      },
+    ]
   },
   {
-    path: "/discover",
-    element: <Discover />,
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: "/wish-list",
-    element: <Wishlist />,
-  },
-  {
-    path: "/tourgroups",
-    element: <TourGroups />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
+    path: "/signup",
+    element: <SignUp />,
   },
 ])
 

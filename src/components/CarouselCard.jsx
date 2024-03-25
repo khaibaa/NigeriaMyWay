@@ -1,24 +1,46 @@
-import FavouriteIcon from "../assets/FavouriteIcon.svg"
+/* eslint-disable react/prop-types */
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
-function CarouselCard() {
+function CarouselCard(props) {
 
     return (
-        <div className=" text-slate-950 relative w-64 p-1 h-80 rounded-xl bg-slate-400">
-            <div className=" w-full h-3/5 rounded-xl bg-gray-600">
+        <>
+            <Dialog>
+                <DialogTrigger className=" hover:cursor-pointer" asChild>
+                    <div className=" ml-4 mr-4 flex justify-between">
+                        <div className=" border flex flex-col justify-between border-slate-400 p-2 h-80 w-72 rounded-xl">
+                            <div className=" h-2/3 rounded-lg rounded-b-none border-2"><img src={props.image} alt="" className=" w-full h-full" /></div>
+                            <button className=" border-2 rounded-t-none uppercase font-extrabold h-1/3 p-6 rounded-lg">{props.title} </button>
+                        </div>
 
-            </div>
+                    </div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle> {props.title} </DialogTitle>
+                        <DialogDescription>
+                            {props.description}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div>
+                        <p>Category: {props.category}</p>
+                    </div>
 
-            <div className=" flex pt-2 flex-col h-2/5 justify-between">
-                <div>
-                    <h1 className=" mb-1">Card Title</h1>
-                    <p>Card Description</p>
-                </div>
+                    <DialogFooter>
 
-                <button className=" bg-black rounded-lg p-1 text-white">Request Tour</button>
-            </div>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
 
-            <button className=" absolute border border-black p-1 rounded-full top-2 right-2"><img src={FavouriteIcon} alt="" /></button>
-        </div >
+        </>
     )
 }
 

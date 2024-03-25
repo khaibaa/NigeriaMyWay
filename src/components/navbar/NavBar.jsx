@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './SideBarData';
 import MenuIcon from "../../assets/MenuIcon.svg"
 import CloseIcon from "../../assets/CloseIcon.svg"
-import ProfileIcon from "../../assets/ProfileIcon.svg"
+import { Button } from '../ui/button';
 import "./NavBar.css"
 
 
@@ -27,9 +27,9 @@ function Navbar() {
 
             {/*  */}
             <div className='navbar'>
-                <Link className='menu-bars'>
+                <Button className='menu-bars bg-white hover:bg-none'>
                     <img src={MenuIcon} alt="" onClick={showSidebar} />
-                </Link>
+                </Button>
             </div>
             <nav className={` z-50 ${sidebar ? 'nav-menu active' : 'nav-menu'}`}>
                 <ul className='nav-menu-items' onClick={showSidebar}>
@@ -49,13 +49,6 @@ function Navbar() {
                         );
                     })}
                 </ul>
-                <div className=' relative'>
-                    <li className=' list-none mt-96 absolute right-36 w-28 h-36 flex justify-center '>
-                        <Link to='/profile' className='menu-bars'>
-                            <img src={ProfileIcon} alt="" style={{ width: 56 }} />
-                        </Link>
-                    </li>
-                </div>
             </nav>
         </>
     );

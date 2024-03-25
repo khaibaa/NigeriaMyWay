@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
 
     return (
@@ -7,7 +9,8 @@ function Footer() {
                 <div className="text-center leading-8 h-40 w-72 ">
                     <h1 className=" text-2xl font-extrabold">Support</h1>
                     <ul>
-                        <li>Contact Us</li>
+                        <Link to="/contactus"><li>Contact Us</li></Link>
+
                         <li>Services</li>
                     </ul>
                 </div>
@@ -21,7 +24,7 @@ function Footer() {
                 <div className=" text-center leading-8 h-40 w-72 ">
                     <h1 className=" text-2xl font-extrabold">Legal</h1>
                     <ul>
-                        <li>T & C</li>
+                        <Link to="/t&c"><li>T & C</li></Link>
                         <li>Privacy Notice</li>
                     </ul>
                 </div>
