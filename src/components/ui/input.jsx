@@ -1,3 +1,6 @@
+//an input comonent used that was used in forms and login input
+//imported the component from shadcn ui
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"

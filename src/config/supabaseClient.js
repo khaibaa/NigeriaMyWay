@@ -1,4 +1,7 @@
 /* eslint-disable no-undef */
+//this file is used to create a supabase client
+//it is used to interact with the supabase database
+
 import { createClient } from "@supabase/supabase-js"
 
 const supabaseUrl = "https://sqdtzakxnqngnoalctgi.supabase.co"

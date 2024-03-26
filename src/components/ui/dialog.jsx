@@ -1,3 +1,6 @@
+//A dialog component gotten from shadcn ui
+//pops up a dialog box when either attraction or restaurant card is clicked
+
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"

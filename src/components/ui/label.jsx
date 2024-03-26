@@ -1,3 +1,6 @@
+//a label component that was used in forms 
+//imported the component from shadcn ui
+
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { cva } from "class-variance-authority";

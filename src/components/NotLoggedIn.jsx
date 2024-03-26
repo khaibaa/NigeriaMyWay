@@ -1,3 +1,6 @@
+//this component is displayed when a user is not logged in
+//it contains a picture, a login page button and a sign up page button
+
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import picture from '../assets/nigeriamyway.jpg'
@@ -16,6 +19,7 @@ export default function NotLoggedIn() {
 
     return (
         <>
+            {/* this part is for mobile views */}
             <div className=" lg:hidden">
                 <div className=" flex-col w-full text-center font-mono h-screen">
                     <div className=" h-2/4 w-full"><img src={picture} className=" h-full w-full" alt="" /></div>
@@ -30,6 +34,8 @@ export default function NotLoggedIn() {
 
                 </div>
             </div>
+
+            {/* this part is for Desktop views */}
             <div className=" hidden lg:contents">
                 <div className=" flex w-full text-center font-mono h-screen">
                     <div className=" w-2/3"><img src={picture} className=" h-full w-full" alt="" /></div>

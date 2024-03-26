@@ -1,3 +1,5 @@
+// the sidebar items that get mapped and shown on the navbar and their paths ( routes )
+
 export const SidebarData = [
     {
         title: 'Home',

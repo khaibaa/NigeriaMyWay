@@ -1,3 +1,6 @@
+//THE SITE FOOTER COMPONENT
+//contains links to various informative pages of the site
+
 import { Link } from "react-router-dom";
 
 function Footer() {

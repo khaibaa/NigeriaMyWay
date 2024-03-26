@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+//The header component which contains the logo, navbar and sign out button
+
 import Navbar from "./navbar/NavBar"
 import { Link } from "react-router-dom"
 import { Button } from "./ui/button"
@@ -11,6 +12,7 @@ import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 function Header() {
     const navigate = useNavigate()
 
+    //function to sign out user when sign out button is clicked
     async function signOut() {
         await supabase.auth.signOut()
         navigate("/login", { replace: true })

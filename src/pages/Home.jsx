@@ -36,7 +36,7 @@ export default function Home() {
         fetchPlaces();
     }, []);
 
-    //fetch restaurant data from api
+    //fetch restaurant data from supabase table
     useEffect(() => {
         const fetchRestaurants = async () => {
             try {
@@ -59,20 +59,35 @@ export default function Home() {
     }, []);
 
     return (
-        <> {isLoading ? <LoadingSpinner /> : <> <div className="pb-5 box-border h-full">
-            <HeroSection
-                setIsRecommended={setIsRecommended}
-                setIsTopDestinations={setIsTopDestinations}
-                setIsDiscoverRestaurant={setIsDiscoverRestaurant}
-                places={places}
-
-            />
-            <div className=" flex mb-36 flex-col gap-14">
-                <Recommended places={places} isRecommended={isRecommended} />
-                <TopDestinations places={places} isTopDestinations={isTopDestinations} />
-                <DiscoverRestaurant restaurants={restaurants} isDiscoverRestaurant={isDiscoverRestaurant} />
-            </div>
-        </div> </>}
+        <>
+            {isLoading ? (
+                <LoadingSpinner /> // Render a loading spinner if isLoading is true
+            ) : (
+                <>
+                    <div className="pb-5 box-border h-full">
+                        <HeroSection
+                            setIsRecommended={setIsRecommended} // Prop to set isRecommended state
+                            setIsTopDestinations={setIsTopDestinations} // Prop to set isTopDestinations state
+                            setIsDiscoverRestaurant={setIsDiscoverRestaurant} // Prop to set isDiscoverRestaurant state
+                            places={places} // Prop to pass places data
+                        />
+                        <div className="flex mb-36 flex-col gap-14">
+                            <Recommended
+                                places={places} // Pass places data to Recommended component
+                                isRecommended={isRecommended} // Pass isRecommended state to Recommended component
+                            />
+                            <TopDestinations
+                                places={places} // Pass places data to TopDestinations component
+                                isTopDestinations={isTopDestinations} // Pass isTopDestinations state to TopDestinations component
+                            />
+                            <DiscoverRestaurant
+                                restaurants={restaurants} // Pass restaurants data to DiscoverRestaurant component
+                                isDiscoverRestaurant={isDiscoverRestaurant} // Pass isDiscoverRestaurant state to DiscoverRestaurant component
+                            />
+                        </div>
+                    </div>
+                </>
+            )}
         </>
 
     )

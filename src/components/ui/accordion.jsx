@@ -1,3 +1,6 @@
+// An Accordion component that was used for the FAQ section of the site.
+// Imported the component from shadcn ui
+
 import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDown } from "lucide-react"

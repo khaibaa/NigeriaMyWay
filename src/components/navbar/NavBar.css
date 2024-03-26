@@ -1,3 +1,5 @@
+/* styling for the navigation bar */
+
 .navbar {
   display: flex;
   justify-content: flex-start;
@@ -78,6 +80,7 @@ span {
   display: none;
 }
 
+/* using media queries to apply the following styles only on screens larger than 660px  */
 @media screen and (min-width: 660px) {
   .nav-menu {
     display: none;

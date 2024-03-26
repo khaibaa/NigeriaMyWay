@@ -1,3 +1,6 @@
+//A carousel component that was used in the recommended, top destinantions and restaurants
+//It create a carousel with previous and next buttons that is also slidable
+
 import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react"

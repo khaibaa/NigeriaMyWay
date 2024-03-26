@@ -7,49 +7,51 @@ import { useState } from "react"
 import supabase from "@/config/supabaseClient"
 import LoadingSpinner from "@/components/ui/loading"
 
+// Define a schema for the form data
 const schema = z.object({
-    email: z.string().email(),
+    // Define a schema for an object
+    email: z.string().email(), // Define a property called 'email'
+    // The 'email' property must be a string and must be a valid email address
+    // defined in the zod library
 })
 
 export default function ContactUs() {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [error, setError] = useState("")
-    const [isError, setIsError] = useState(false)
-    const [success, setSuccess] = useState("")
-    const [isSuccess, setIsSuccess] = useState(false)
+    const [name, setName] = useState('') // State for name input
+    const [email, setEmail] = useState('') // State for email input
+    const [message, setMessage] = useState('') // State for message input
+    const [isSubmitting, setIsSubmitting] = useState(false) // State for form submission status
+    const [error, setError] = useState("") // State for error message
+    const [isError, setIsError] = useState(false) // State for error flag
+    const [success, setSuccess] = useState("") // State for success message
+    const [isSuccess, setIsSuccess] = useState(false) // State for success flag
+
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
+    // Using react-hook-form library for form handling and validation
 
     const onSubmit = async () => {
-        setIsSubmitting(true)
-        setIsError(false)
-        setIsSuccess(false)
-        setError('')
-        setSuccess('')
+        setIsSubmitting(true) // Set submitting state to true
+        setIsError(false) // Reset error state
+        setIsSuccess(false) // Reset success state
 
-        const { error } = await supabase
-            .from('Contact Us')
-            .insert([{ name, email, message }])
+        const { error } = await supabase.from('Contact Us').insert([{ name, email, message }]) // Insert form data to Supabase
 
         if (error) {
-            setError('Error submitting contact form')
+            setError('Error submitting contact form') // Set error state if error occurs
             setIsError(true)
-            setIsSuccess(false)
-        }
-        else {
-            setIsError(false)
-            setSuccess('Contact form submitted successfully!')
+        } else {
+            setSuccess('Contact form submitted successfully!') // Set success state if successful
             setIsSuccess(true)
         }
-        setName('')
+
+        setName('') // Reset form fields
         setEmail('')
         setMessage('')
-        setIsSubmitting(false)
+        setIsSubmitting(false) // Set submitting state to false
     }
 
     return (
+
+        //A form for collecting contact info and storign in database
         <div className=" mb-28 flex flex-col gap-5 justify-center items-center h-96">
             <p className=" text-xl">Contact Us Form</p>
             {isSubmitting ? <LoadingSpinner /> :

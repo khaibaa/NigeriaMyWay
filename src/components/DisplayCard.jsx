@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+
+// Importing the Dialog component from dialog.jsx in ui folder
 import {
     Dialog,
     DialogContent,
@@ -9,11 +11,14 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
+//the dialog takes is props that allows for dynamic passing of data i.e isnt static
+//the dialog displays 
 function CarouselCard(props) {
 
     return (
         <>
             <Dialog>
+                {/* This is the card that triggers dialog when clicked */}
                 <DialogTrigger className=" hover:cursor-pointer" asChild>
                     <div className=" ml-4 mr-4 flex justify-between">
                         <div className=" border flex flex-col justify-between border-slate-400 p-2 h-80 w-72 rounded-xl">
@@ -23,6 +28,7 @@ function CarouselCard(props) {
 
                     </div>
                 </DialogTrigger>
+                {/* this is the content of the dialog that pops up when the card is clicked */}
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle> {props.title} </DialogTitle>

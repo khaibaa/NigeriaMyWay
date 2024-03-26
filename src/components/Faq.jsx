@@ -1,3 +1,5 @@
+//This is a simple FAQ section that uses the Accordion component to display the questions and answers.
+
 import {
     Accordion,
     AccordionContent,
@@ -6,6 +8,8 @@ import {
 } from "@/components/ui/accordion"
 
 export default function Faq() {
+
+    //when accordion trigger is clicked, accordion content is displayed
 
     return (
         <div className=" rounded-md flex w-full h-14 flex-col justify-center items-center">

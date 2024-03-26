@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import CarouselCard from "../components/CarouselCard.jsx"
+//this component is used to display a carousel of top desinations
+
+import CarouselCard from "./DisplayCard.jsx"
 import {
     Carousel,
     CarouselContent,
@@ -10,13 +12,16 @@ import {
 import defaultImg from "../assets/defaultImage.jpeg"
 
 
+//the component receives places and isTopDestinations as props from HeroSection.jsx
 export default function TopDestinations({ places, isTopDestinations }) {
+
     return (
         <>{isTopDestinations ? <><div className=" pl-5 flex flex-col gap-5">
             <h1 className=' text-3xl text-black'>Top 10 Destinations</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>
 
+                    {/* map through the places array and display the attraction card and gets top places */}
                     {places
                         .slice(0, 10) // Get the first 10 items from the filtered array
                         .map((place, index) => (
