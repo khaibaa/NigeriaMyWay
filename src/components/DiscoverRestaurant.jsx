@@ -22,7 +22,7 @@ export default function DiscoverRestaurant({ restaurants, isDiscoverRestaurant }
 
     return (
         <> {isDiscoverRestaurant ? <><div className=" pl-5 flex flex-col gap-5">
-            <h1 className=' text-3xl text-black'>Discover Restaurants</h1>
+            <h1 className=' text-xl md:text-3xl text-black'>Discover Restaurants</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>
 

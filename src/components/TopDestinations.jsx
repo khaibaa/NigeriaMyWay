@@ -17,7 +17,7 @@ export default function TopDestinations({ places, isTopDestinations }) {
 
     return (
         <>{isTopDestinations ? <><div className=" pl-5 flex flex-col gap-5">
-            <h1 className=' text-3xl text-black'>Top 10 Destinations</h1>
+            <h1 className=' text-xl md:text-3xl text-black'>Top 10 Destinations</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>
 

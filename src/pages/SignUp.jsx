@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 // Import the Zod library
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useNavigate } from "react-router-dom"
 import supabase from "@/config/supabaseClient"
 import { Link } from "react-router-dom"
 import LoadingSpinner from "@/components/ui/loading"
@@ -23,12 +22,12 @@ export default function SignUp() {
 
     // State variables for error handling, loading, and success status
     const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
     const [isError, setIsError] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
 
     // Navigate function from React Router for navigation
-    const navigate = useNavigate()
 
     // useForm hook from react-hook-form for form handling and validation
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
@@ -49,7 +48,7 @@ export default function SignUp() {
             } else if (data) {
                 // Clear error state and navigate to the home page on successful sign-up
                 setIsError(false)
-                navigate('/', { replace: true });
+                setSuccess("Verification email sent. Please check your email to verify your account.")
                 setIsSuccess(true)
             }
         } catch (err) {
@@ -111,6 +110,7 @@ export default function SignUp() {
                         <div>
                             <button type="submit" className=" w-full bg-black text-white hover:bg-opacity-90 h-10 px-4 py-2 rounded-md inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">Sign Up</button>
                         </div>
+                        {success && <div className=" text-green-500 text-xs">{success}</div>}
                         {isError && <div className=" text-red-500 text-xs">{error}</div>}
                     </form>
                 </div>
