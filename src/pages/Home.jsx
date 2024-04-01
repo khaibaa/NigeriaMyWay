@@ -13,6 +13,7 @@ export default function Home() {
     const [isDiscoverRestaurant, setIsDiscoverRestaurant] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [restaurants, setRestaurants] = useState([])
+    
 
     //fetch attraction data from supabase
     useEffect(() => {

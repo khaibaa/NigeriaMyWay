@@ -20,7 +20,7 @@ function Header() {
 
     return (
         <div className='border-2 h-12 p-2 rounded-md flex justify-between'>
-            <Link to="/"><p className=' font-mono font-extrabold text-xl'>NigeriaMyWay</p></Link>
+            <Link to="/"><p className=' font-rubik font-extrabold text-xl'>NigeriaMyWay</p></Link>
             <div className=' flex gap-3'>
                 <Navbar />
                 <Button onClick={() => { signOut() }} className=' bg-white -mt-1 h-17 w-18'><FontAwesomeIcon icon={faRightToBracket} /></Button>
