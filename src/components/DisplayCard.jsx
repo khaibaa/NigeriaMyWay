@@ -4,11 +4,8 @@
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+    DialogTrigger
+    
 } from "@/components/ui/dialog"
 
 //the dialog takes is props that allows for dynamic passing of data i.e isnt static
@@ -29,20 +26,26 @@ function CarouselCard(props) {
                     </div>
                 </DialogTrigger>
                 {/* this is the content of the dialog that pops up when the card is clicked */}
-                <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle> {props.title} </DialogTitle>
-                        <DialogDescription>
-                            {props.description}
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div>
-                        <p>Category: {props.category}</p>
-                    </div>
-
-                    <DialogFooter>
-
-                    </DialogFooter>
+                <DialogContent className="sm:max-w-[650px]">
+                <div className="max-w-2xl mx-auto mt-8 flex bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="w-2/5">
+        <img src= {props.image} alt="Zuma Rock" className="w-96 h-1000" />
+        
+      </div>
+      <div className="p-6 w-4/5">
+        <p className="text-gray-700 text-sm leading-relaxed">
+            {props.description}
+        </p>
+        <div className="flex justify-center mt-6">
+          <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded-2xl mr-2">
+            Directions
+          </button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded-xl">
+            Request Tour
+          </button>
+        </div>
+      </div>
+    </div>
                 </DialogContent>
             </Dialog>
 
