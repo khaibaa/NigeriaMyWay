@@ -5,7 +5,8 @@ import AddIcon from "../assets/AddIcon.svg" // Import an SVG icon
 import CarouselCard from "./DisplayCard"; // Import a custom component
 import defaultImg from "../assets/defaultImage.jpeg" // Import a default image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesome icon library
-import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons"; // Import a specific FontAwesome icon
+import { faClose, faRectangleXmark, faX } from "@fortawesome/free-solid-svg-icons"; // Import a specific FontAwesome icon
+import myWay from "@/assets/ngn_my_way.jpeg"
 
 // Define the HeroSection functional component
 function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDiscoverRestaurant }) {
@@ -15,6 +16,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     const [displayMalls, setDisplayMalls] = useState(false)
     const [displayTours, setDisplayTours] = useState(false)
     const [displayParks, setDisplayParks] = useState(false)
+    const [showClose, setShowClose] = useState(false)
 
     // Function to display all places
     function handleAll() {
@@ -62,6 +64,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
 
     // Function to remove all filters
     function removeFilters() {
+        setShowClose(false)
         setDisplayTours(false) // Reset all display filter states to false
         setDisplayAll(false)
         setDisplayMalls(false)
@@ -111,19 +114,39 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                     </button>
                 </div>
 
-                <div className=" pb-5 w-full">
-                    <h1 className=" uppercase text-center leading-normal mb-1 text-2xl mt-8 md:text-5xl">explore nigeria, your way!</h1>
-                    <hr className=" mb-5"></hr>
-                    <div className=" mb-8 justify-center gap-x-2 flex-wrap gap-y-2 hidden mt-20 sm:flex">
+                <div className="pt-10 pb-5 w-full">
+                    <section className="flex  justify-center items-center">
+                        <div className="lhs flex justify-center items-center">
+                            <h1 className=" uppercase text-left w-8/12 leading-normal mb-1 text-2xl mt-8 md:text-5xl">explore nigeria, your way!</h1>
+                        </div>
+                        <div className="rhs flex justify-center items-center">
+                            <img src={myWay} alt="Nigeria my way" />
+                        </div>
+                    </section>
+                    {/* <h1 className=" uppercase text-center leading-normal mb-1 text-2xl mt-8 md:text-5xl">explore nigeria, your way!</h1> */}
+                    <hr className=" mb-5 opacity-20"></hr>
+                    <div className=" mb-8 justify-center items-center gap-x-2 flex-wrap gap-y-2 hidden mt-20 sm:flex">
                         {/* Filter items for desktop with fuctions that were defined above */}
-                        <div className="flex text-white gap-x-0 rounded-xl border border-outline border-opacity-15">
-                            <button onClick={() => { handleAll() }} className="py-2 px-5 flex gap-x-1 font-medium  rounded-xl  transition-all relative hover:border-2"><span className="text-2xl xl:text-h6 relative mix-blend-exclusion  z-10">All</span></button>
-                            <button onClick={() => { handleParks() }} className="py-2 px-5 flex gap-x-1 font-medium  rounded-xl  transition-all relative hover:border-2"><span className="text-2xl xl:text-h6 relative mix-blend-exclusion  z-10">Parks</span></button>
-                            <button onClick={() => { handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium  rounded-xl  transition-all relative hover:border-2"><span className="text-2xl xl:text-h6 relative mix-blend-exclusion  z-10">Malls</span></button>
-                            <button onClick={() => { handleTours() }} className="py-2 px-5 flex gap-x-1 font-medium  rounded-xl  transition-all relative hover:border-2"><span className="text-2xl xl:text-h6 relative mix-blend-exclusion  z-10">Tours</span></button>
+                        <div className="flex text-white gap-x-0 ">
+                            <button onClick={() => { 
+                                setShowClose(true)
+                                handleAll()
+                                }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">All</span></button>
+                            <button onClick={() => { 
+                                setShowClose(true)
+                                handleParks() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Parks</span></button>
+                            <button onClick={() => { 
+                                setShowClose(true)
+                                handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Malls</span></button>
+                            <button onClick={() => { 
+                                setShowClose(true)
+                                handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Culture</span></button> 
+
                         </div>
                         {/* icon to remove filters when cliked  */}
-                        <FontAwesomeIcon onClick={() => { removeFilters() }} className=" h-16 w-16 transition-all hover:cursor-pointer" icon={faRectangleXmark} />
+                        {
+                            showClose &&
+                            <FontAwesomeIcon onClick={() => { removeFilters() }} className=" h-10 w-10 hover:bg-black hover:opacity-60 hover:text-white rounded-sm transition-all hover:cursor-pointer" icon={faClose} />}
                     </div>
 
                     {/* gets displayed when all is clicked */}
