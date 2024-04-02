@@ -14,7 +14,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [diplayAll, setDisplayAll] = useState(false)
     const [displayMalls, setDisplayMalls] = useState(false)
-    const [displayTours, setDisplayTours] = useState(false)
+    const [displayCulture, setDisplayCulture] = useState(false)
     const [displayParks, setDisplayParks] = useState(false)
     const [showClose, setShowClose] = useState(false)
 
@@ -22,7 +22,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     function handleAll() {
         setDisplayAll(true) // Set diplayAll to true
         setDisplayMalls(false) // Set all other display filters to false
-        setDisplayTours(false)
+        setDisplayCulture(false)
         setDisplayParks(false)
         setIsRecommended(false) // Update parent component state to not display recommended places
         setIsTopDestinations(false) // Update parent component state to not display top destinations
@@ -33,7 +33,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     function handleMalls() {
         setDisplayMalls(true) // Set displayMalls to true
         setDisplayAll(false) // Set all other display filters to false
-        setDisplayTours(false)
+        setDisplayCulture(false)
         setDisplayParks(false)
         setIsRecommended(false) // Update parent component state to not display recommended places
         setIsTopDestinations(false) // Update parent component state to not display top destinations
@@ -45,15 +45,15 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
         setDisplayParks(true) // Set displayParks to true
         setDisplayAll(false) // Set all other display filters to false
         setDisplayMalls(false)
-        setDisplayTours(false)
+        setDisplayCulture(false)
         setIsRecommended(false) // Update parent component state to not display recommended places
         setIsTopDestinations(false) // Update parent component state to not display top destinations
         setIsDiscoverRestaurant(false) // Update parent component state to not display restaurants
     }
 
-    // Function to display tours
-    function handleTours() {
-        setDisplayTours(true) // Set displayTours to true
+    // Function to display Culture
+    function handleCulture() {
+        setDisplayCulture(true) // Set displayCulture to true
         setDisplayAll(false) // Set all other display filters to false
         setDisplayMalls(false)
         setDisplayParks(false)
@@ -65,7 +65,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     // Function to remove all filters
     function removeFilters() {
         setShowClose(false)
-        setDisplayTours(false) // Reset all display filter states to false
+        setDisplayCulture(false) // Reset all display filter states to false
         setDisplayAll(false)
         setDisplayMalls(false)
         setDisplayParks(false)
@@ -78,10 +78,10 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     const placesWithMallCategory = places.filter(
         (place) => place.attraction_category === "Shopping");
 
-    // Filter the 'places' array and create a new array called 'placesWithToursCategory'
-    // that contains only the places where the 'attraction_category' property is equal to "Tours"
-    const placesWithToursCategory = places.filter(
-        (place) => place.attraction_category === "Tours");
+    // Filter the 'places' array and create a new array called 'placesWithCultureCategory'
+    // that contains only the places where the 'attraction_category' property is equal to "Culture"
+    const placesWithCultureCategory = places.filter(
+        (place) => place.attraction_category === "Culture");
 
     // Filter the 'places' array and create a new array called 'placesWithParksCategory'
     // that contains only the places where the 'attraction_category' property is equal to "Nature & Parks"
@@ -101,7 +101,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                             <button onClick={handleAll}>All</button>
                             <button onClick={handleParks}>Parks</button>
                             <button onClick={handleMalls}>Malls</button>
-                            <button onClick={handleTours}>Tours</button>
+                            <button onClick={handleCulture}>Culture</button>
                             <button onClick={removeFilters}>remove filters</button>
                         </div>
                     )}
@@ -140,7 +140,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                                 handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Malls</span></button>
                             <button onClick={() => { 
                                 setShowClose(true)
-                                handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Culture</span></button> 
+                                handleCulture() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Culture</span></button> 
 
                         </div>
                         {/* icon to remove filters when cliked  */}
@@ -175,9 +175,9 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                         ))}
                     </div>
 
-                    {/* gets displayed when Tours is clicked */}
+                    {/* gets displayed when Culture is clicked */}
                     <div className=" justify-center items-center grid grid-cols-1 md:grid-cols-4 gap-5">
-                        {displayTours && placesWithToursCategory.map((place) => (
+                        {displayCulture && placesWithCultureCategory.map((place) => (
                             <CarouselCard
                                 key={place.id}
                                 title={place.attraction_name}

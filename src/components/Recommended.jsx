@@ -18,7 +18,7 @@ function Recommended({ places, isRecommended }) {
     const closePlaces = places.filter(place => place.attraction_distance < 14)
 
     return (<>{isRecommended ? <><div className=" pl-5  flex flex-col gap-5">
-        <h1 className=' text-xl md:text-3xl text-black'>Recommended ( within 10 miles )</h1>
+        <h1 className=' text-xl md:text-3xl text-black'>Recommended</h1>
         <Carousel>
             <CarouselContent className=' w-[300px]'>
 
