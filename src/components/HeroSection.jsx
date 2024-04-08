@@ -7,6 +7,8 @@ import defaultImg from "../assets/defaultImage.jpeg" // Import a default image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesome icon library
 import { faClose, faRectangleXmark, faX } from "@fortawesome/free-solid-svg-icons"; // Import a specific FontAwesome icon
 import myWay from "@/assets/ngn_my_way.jpeg"
+import {useTranslation} from "react-i18next";
+
 
 // Define the HeroSection functional component
 function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDiscoverRestaurant }) {
@@ -17,6 +19,8 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     const [displayCulture, setDisplayCulture] = useState(false)
     const [displayParks, setDisplayParks] = useState(false)
     const [showClose, setShowClose] = useState(false)
+    const {t} = useTranslation("common");
+
 
     // Function to display all places
     function handleAll() {
@@ -98,10 +102,10 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                     {/* Filter items for mobile with fuctions that were defined above */}
                     {isMenuOpen && (
                         <div className="text-lg flex flex-col gap-4 mb-10">
-                            <button onClick={handleAll}>All</button>
-                            <button onClick={handleParks}>Parks</button>
-                            <button onClick={handleMalls}>Malls</button>
-                            <button onClick={handleCulture}>Culture</button>
+                            <button onClick={handleAll}>{t("nav.all")}</button>
+                            <button onClick={handleParks}>{t("nav.parks")}</button>
+                            <button onClick={handleMalls}>{t("nav.malls")}</button>
+                            <button onClick={handleCulture}>{t("nav.culture")}</button>
                             <button onClick={removeFilters}>remove filters</button>
                         </div>
                     )}
@@ -117,7 +121,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                 <div className="pt-10 pb-5 w-full">
                     <section className="flex  justify-center items-center">
                         <div className="lhs flex justify-center items-center">
-                            <h1 className=" uppercase text-left w-8/12 leading-normal mb-1 text-2xl mt-8 md:text-5xl">explore nigeria, your way!</h1>
+                            <h1 className=" uppercase text-left w-8/12 leading-normal mb-1 text-2xl mt-8 md:text-5xl">{t("nav.hero_title")}</h1>
                         </div>
                         <div className="rhs flex justify-center items-center">
                             <img src={myWay} alt="Nigeria my way" />
@@ -131,16 +135,16 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                             <button onClick={() => { 
                                 setShowClose(true)
                                 handleAll()
-                                }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">All</span></button>
+                                }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.all")}</span></button>
                             <button onClick={() => { 
                                 setShowClose(true)
-                                handleParks() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Parks</span></button>
+                                handleParks() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.parks")}</span></button>
                             <button onClick={() => { 
                                 setShowClose(true)
-                                handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Malls</span></button>
+                                handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.malls")}</span></button>
                             <button onClick={() => { 
                                 setShowClose(true)
-                                handleCulture() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">Culture</span></button> 
+                                handleCulture() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.culture")}</span></button> 
 
                         </div>
                         {/* icon to remove filters when cliked  */}

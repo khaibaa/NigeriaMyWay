@@ -10,15 +10,17 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel.jsx"
 import defaultImg from "../assets/defaultImage.jpeg"
+import {useTranslation} from "react-i18next"
 
 //the component receives places and isRecommended as props from HeroSection.jsx
 function Recommended({ places, isRecommended }) {
 
     //filter the places array to get places within 10 miles
     const closePlaces = places.filter(place => place.attraction_distance < 14)
+    const {t} = useTranslation("common");
 
     return (<>{isRecommended ? <><div className=" pl-5  flex flex-col gap-5">
-        <h1 className=' text-xl md:text-3xl text-black'>Recommended</h1>
+        <h1 className=' text-xl md:text-3xl text-black'>{t("nav.recommended")}</h1>
         <Carousel>
             <CarouselContent className=' w-[300px]'>
 

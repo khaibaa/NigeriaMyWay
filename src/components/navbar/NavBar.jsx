@@ -5,6 +5,7 @@ import MenuIcon from "../../assets/MenuIcon.svg"
 import CloseIcon from "../../assets/CloseIcon.svg"
 import { Button } from '../ui/button';
 import "./NavBar.css" //importing the navbar css styles
+import { LanguageSelector } from '../LanguageSelector';
 
 
 function Navbar() {
@@ -27,6 +28,7 @@ function Navbar() {
                 ))}
             </ul>
 
+            <LanguageSelector />
             {/* menu button that shows the sidebar on mobile when clicked */}
             {/* FOR MOBILE */}
             <div className='navbar sm:hidden'>
@@ -53,6 +55,7 @@ function Navbar() {
                             </li>
                         );
                     })}
+                    <LanguageSelector />
                 </ul>
             </nav>
         </>
