@@ -1,0 +1,41 @@
+{
+	"body": {
+		"discover": "Discover Restaurants",
+		"top": "Top 10 Destinations"
+	},
+	"footer": {
+		"about": "About Us",
+		"company": "Company",
+		"contact": "Contact Us",
+		"founder": "About Founder",
+		"legal": "Legal",
+		"privacy": "Privacy Notice",
+		"services": "Services",
+		"support": "Support",
+		"t&c": "T & C "
+	},
+	"language-selector": {
+		"label": "English",
+		"languages": {
+			"en": "English",
+			"es": "Spanish",
+			"fr": "French"
+		}
+	},
+	"modal": {
+		"directions": "Directions",
+		"tour": "Request Tour"
+	},
+	"nav": {
+		"all": "All",
+		"culture": "Culture",
+		"hero_title": "EXPLORE NIGERIA, YOUR WAY!",
+		"home": "home",
+		"malls": "Malls",
+		"map": "map",
+		"parks": "Parks",
+		"recommended": "Recommended",
+		"restaurants": "restaurants",
+		"select_state": "Select State"
+	}
+}
