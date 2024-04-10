@@ -1,0 +1,41 @@
+{
+	"body": {
+		"discover": "Descubre Restaurantes",
+		"top": "10 destinos principales"
+	},
+	"footer": {
+		"about": "Sobre nosotros",
+		"company": "Empresa",
+		"contact": "Contáctenos",
+		"founder": "Acerca del fundador",
+		"legal": "Legal",
+		"privacy": "Aviso de Privacidad",
+		"services": "Servicios",
+		"support": "Apoyo",
+		"t&c": "Términos y condiciones"
+	},
+	"language-selector": {
+		"label": "Espanyol",
+		"languages": {
+			"en": "Inglés",
+			"es": "Español",
+			"fr": "Francés"
+		}
+	},
+	"modal": {
+		"directions": "Direcciones",
+		"tour": "Solicitar recorrido"
+	},
+	"nav": {
+		"all": "TODOS",
+		"culture": "Cultura",
+		"hero_title": "¡EXPLORA NIGERIA, A TU MANERA!",
+		"home": "Casa",
+		"malls": "Centros comerciales",
+		"map": "Mapa",
+		"parks": "Parques",
+		"recommended": "Recomendado",
+		"restaurants": "Los restaurantes",
+		"select_state": "Seleccione Estado"
+	}
+}

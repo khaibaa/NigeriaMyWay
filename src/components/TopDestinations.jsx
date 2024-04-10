@@ -10,14 +10,17 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel.jsx"
 import defaultImg from "../assets/defaultImage.jpeg"
+import {useTranslation} from "react-i18next";
+
 
 
 //the component receives places and isTopDestinations as props from HeroSection.jsx
 export default function TopDestinations({ places, isTopDestinations }) {
+    const {t} = useTranslation("common");
 
     return (
         <>{isTopDestinations ? <><div className=" pl-5 flex flex-col gap-5">
-            <h1 className=' text-xl md:text-3xl text-black'>Top 10 Destinations</h1>
+            <h1 className=' text-xl md:text-3xl text-black'>{t("body.top")}</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>
 

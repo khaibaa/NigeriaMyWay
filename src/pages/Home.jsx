@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import LoadingSpinner from "@/components/ui/loading.jsx"
 import DiscoverRestaurant from "@/components/DiscoverRestaurant.jsx"
 import supabase from "@/config/supabaseClient.js"
+import {useTranslation} from "react-i18next";
 
 export default function Home() {
     const [places, setPlaces] = useState([])
@@ -14,7 +15,7 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(false)
     const [restaurants, setRestaurants] = useState([])
     
-
+    const {t} = useTranslation("common");
     //fetch attraction data from supabase
     useEffect(() => {
         const fetchPlaces = async () => {

@@ -1,0 +1,41 @@
+{
+	"body": {
+		"discover": "Découvrez les restaurants",
+		"top": "Top 10 des destinations"
+	},
+	"footer": {
+		"about": "À propos de nous",
+		"company": "Entreprise",
+		"contact": "Contactez nous",
+		"founder": "À propos du fondateur",
+		"legal": "Légal",
+		"privacy": "Avis de confidentialité",
+		"services": "Prestations de service",
+		"support": "Soutien",
+		"t&c": "Conditions générales"
+	},
+	"language-selector": {
+		"label": "Français",
+		"languages": {
+			"en": "Anglais",
+			"es": "Espanol",
+			"fr": "Français"
+		}
+	},
+	"modal": {
+		"directions": "Instructions",
+		"tour": "Demander une visite"
+	},
+	"nav": {
+		"all": "Tout",
+		"culture": "Culture",
+		"hero_title": "EXPLOREZ LE NIGERIA, À VOTRE FAÇON !",
+		"home": "Accueil",
+		"malls": "Centres Commerciaux",
+		"map": "Carte",
+		"parks": "Parcs",
+		"recommended": "Conseillé",
+		"restaurants": "Restaurants",
+		"select_state": "Sélectionnez l'état"
+	}
+}

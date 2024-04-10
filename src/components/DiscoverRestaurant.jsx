@@ -10,9 +10,12 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel.jsx"
 import defaultImg from "../assets/defaultImage.jpeg"
+import {useTranslation} from "react-i18next";
+
 
 //the component receives restaurants and isDiscoverRestaurant as props from HeroSection.jsx
 export default function DiscoverRestaurant({ restaurants, isDiscoverRestaurant }) {
+    const {t} = useTranslation("common");
 
     //used to shuffle the restaurants array and display random restaurants
     function generateRandomItems(arr, count) {
@@ -22,7 +25,7 @@ export default function DiscoverRestaurant({ restaurants, isDiscoverRestaurant }
 
     return (
         <> {isDiscoverRestaurant ? <><div className=" pl-5 flex flex-col gap-5">
-            <h1 className=' text-xl md:text-3xl text-black'>Discover Restaurants</h1>
+            <h1 className=' text-xl md:text-3xl text-black'>{t("body.discover")}</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>
 
