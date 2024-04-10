@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 // The component receives places and isRecommended as props from HeroSection.jsx
 function Recommended({ places, isRecommended }) {
   const [userLocation, setUserLocation] = useState(null);
+  const [topAttractions, setTopAttractions] = useState([]);
   const { t } = useTranslation("common");
 
   useEffect(() => {
@@ -32,7 +33,10 @@ function Recommended({ places, isRecommended }) {
         console.error('Error getting user location:', error);
       }
     );
-  }, []);
+
+    // Set the top attractions
+    setTopAttractions(places.sort((a, b) => b.attraction_rating - a.attraction_rating).slice(0, 5));
+  }, [places]);
 
   // Function to calculate the distance between two points
   function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -70,17 +74,31 @@ function Recommended({ places, isRecommended }) {
           <h1 className=" text-xl md:text-3xl text-black">{t("nav.recommended")}</h1>
           <Carousel>
             <CarouselContent className=" w-[300px]">
-              {/* Map through the places array and display the attraction card */}
-              {closePlaces.map((place, index) => (
-                <CarouselItem key={index}>
-                  <CarouselCard
-                    title={place.attraction_name}
-                    description={place.attraction_description || "No description available"}
-                    image={place.attraction_image_url || defaultImg}
-                    category={place.attraction_category || " No category available"}
-                  />
-                </CarouselItem>
-              ))}
+              {closePlaces.length > 0 ? (
+                // Map through the places array and display the attraction card
+                closePlaces.map((place, index) => (
+                  <CarouselItem key={index}>
+                    <CarouselCard
+                      title={place.attraction_name}
+                      description={place.attraction_description || "No description available"}
+                      image={place.attraction_image_url || defaultImg}
+                      category={place.attraction_category || " No category available"}
+                    />
+                  </CarouselItem>
+                ))
+              ) : (
+                // Display the top attractions if there are no attractions within 10 miles
+                topAttractions.map((place, index) => (
+                  <CarouselItem key={index}>
+                    <CarouselCard
+                      title={place.attraction_name}
+                      description={place.attraction_description || "No description available"}
+                      image={place.attraction_image_url || defaultImg}
+                      category={place.attraction_category || " No category available"}
+                    />
+                  </CarouselItem>
+                ))
+              )}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
