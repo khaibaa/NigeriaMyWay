@@ -35,7 +35,7 @@ function Recommended({ places, isRecommended }) {
     );
 
     // Set the top attractions
-    setTopAttractions(places.sort((a, b) => b.attraction_rating - a.attraction_rating).slice(0, 5));
+    setTopAttractions(places.sort((a, b) => b.attraction_distance - a.attraction_distance).slice(0, 5));
   }, [places]);
 
   // Function to calculate the distance between two points
