@@ -2,7 +2,7 @@
 
 // This component is used to display a carousel of attractions within 10 miles
 
-import { useState, useEffect } from 'react';
+import React,  { useState, useEffect } from 'react';
 import CarouselCard from "./DisplayCard.jsx";
 import {
   Carousel,
@@ -13,12 +13,50 @@ import {
 } from "@/components/ui/carousel.jsx";
 import defaultImg from "../assets/defaultImage.jpeg";
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+
 
 // The component receives places and isRecommended as props from HeroSection.jsx
 function Recommended({ places, isRecommended }) {
   const [userLocation, setUserLocation] = useState(null);
   const [topAttractions, setTopAttractions] = useState([]);
+  const [tripPlaces, setTripPlaces] = useState([]);
   const { t } = useTranslation("common");
+
+   const fetchAttractions = async () => {
+     console.log("Fetching attractions...");
+ 
+     const options = {
+       method: 'GET',
+       url: 'https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng',
+       params: {
+         longitude: '7.475477684657172',
+         latitude: '9.07406713531733',
+         lunit: 'km',
+         limit: "10",
+         currency: 'USD',
+         distance: "10",
+         lang: 'en_US'
+       },
+       headers: {
+         'X-RapidAPI-Key': '5669b8537fmsh4e9efbbc1c1db15p19a08bjsn0757875ca42d',
+         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+       }
+     };
+     try {
+       const response = await axios.request(options);
+       console.log(response.data.data);
+      //  console.log("Before: ", tripPlaces);
+       setTripPlaces(response.data.data)
+      //  console.log("After: ", tripPlaces);
+     } catch (error) {
+       console.error(error);
+     }
+   }
+
+   useEffect(() => {
+    fetchAttractions()
+   }, [])
 
   useEffect(() => {
     // Get the user's location
@@ -88,16 +126,20 @@ function Recommended({ places, isRecommended }) {
                 ))
               ) : (
                 // Display the top attractions if there are no attractions within 10 miles
-                topAttractions.map((place, index) => (
+                tripPlaces?.map((place, index) => {
+                  return (
                   <CarouselItem key={index}>
                     <CarouselCard
-                      title={place.attraction_name}
-                      description={place.attraction_description || "No description available"}
-                      image={place.attraction_image_url || defaultImg}
-                      category={place.attraction_category || " No category available"}
+                      title={place?.name}
+                      description={place?.description || "No description available"}
+                      image={place.photo?.images?.original.url || defaultImg}
+                      category={place?.category?.name || " No category available"}
+                      location={place?.address_obj}
+                      latitude={place?.latitude}
+                      longitude={place?.longitude}
                     />
                   </CarouselItem>
-                ))
+                )})
               )}
             </CarouselContent>
             <CarouselPrevious />
@@ -105,7 +147,7 @@ function Recommended({ places, isRecommended }) {
           </Carousel>
         </div>
       ) : (
-        ""
+        "Loading..."
       )}
     </>
   );

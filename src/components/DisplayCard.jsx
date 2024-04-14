@@ -14,6 +14,8 @@ function CarouselCard(props) {
 
   const whatsAppMsgLink = `https://wa.me/${whatsAppNumber}?text=Hello%20I%20want%20to%20request%20a%20tour%20guide%20for%20${props.title}`
 
+  const googleMapsLink = `https://www.google.com/maps/search/${props?.location?.street1}${props?.location?.street2 && props?.location?.street2}/@${props.longitude},${props.latitude}`
+
   const truncateDescription = () => {
     let description = props.description
 
@@ -46,9 +48,9 @@ function CarouselCard(props) {
                     </div>
                 </DialogTrigger>
                 {/* this is the content of the dialog that pops up when the card is clicked */}
-                <DialogContent className="sm:max-w-[900px] bg-[#E5DDC5] flex rounded-3xl shadow-md overflow-hidden">
+                <DialogContent className="sm:max-w-[900px] bg-[#FFFFFF] flex rounded-3xl shadow-md overflow-hidden">
             <div className="bg-contain  flex justify-center items-center w-1/3 h-80">
-              <img src={props.image} alt={props.title} className="w-72 h-72 rounded-2xl" />
+              <img src={props.image} alt={props.title} className="w-72 h-72 rounded-2xl object-cover" />
             </div>
             <div className="p-6 w-2/3">
               <p className="text-gray-700 text-sm leading-relaxed">
@@ -56,7 +58,9 @@ function CarouselCard(props) {
               </p>
               <div className="flex justify-center mt-6">
                 <button className="bg-[#BED7DC] hover:opacity-50 text-black font-bold py-2 px-4 rounded-2xl mr-2">
+                  <a href={googleMapsLink} target="_blank">
                   Directions
+                  </a>
                 </button>
                 <button className="bg-[#BED7DC] hover:opacity-50 text-black font-bold py-2 px-4 rounded-xl">
                   <a href={whatsAppMsgLink} target="_blank">
