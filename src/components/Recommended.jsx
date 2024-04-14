@@ -18,20 +18,23 @@ import axios from 'axios';
 
 // The component receives places and isRecommended as props from HeroSection.jsx
 function Recommended({ places, isRecommended }) {
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState({});
   const [topAttractions, setTopAttractions] = useState([]);
   const [tripPlaces, setTripPlaces] = useState([]);
   const { t } = useTranslation("common");
+  const [lat,setLat] = useState(0)
+  const [lng,setLng] = useState(0)
 
-   const fetchAttractions = async () => {
+
+   const fetchAttractions = async (lat,lng) => {
      console.log("Fetching attractions...");
  
      const options = {
        method: 'GET',
        url: 'https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng',
        params: {
-         longitude: '7.475477684657172',
-         latitude: '9.07406713531733',
+         longitude: lng,
+         latitude: lat,
          lunit: 'km',
          limit: "10",
          currency: 'USD',
@@ -55,11 +58,6 @@ function Recommended({ places, isRecommended }) {
    }
 
    useEffect(() => {
-    fetchAttractions()
-   }, [])
-
-  useEffect(() => {
-    // Get the user's location
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setUserLocation({
@@ -71,11 +69,10 @@ function Recommended({ places, isRecommended }) {
         console.error('Error getting user location:', error);
       }
     );
+    console.log (userLocation)
+    fetchAttractions(userLocation.latitude,userLocation.longitude)
 
-    // Set the top attractions
-    setTopAttractions(places.sort((a, b) => b.attraction_distance - a.attraction_distance).slice(0, 5));
-  }, [places]);
-
+   }, [])
   // Function to calculate the distance between two points
   function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Earth's radius in kilometers
