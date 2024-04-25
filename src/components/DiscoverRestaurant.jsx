@@ -24,7 +24,7 @@ export default function DiscoverRestaurant({ restaurants, isDiscoverRestaurant }
     }
 
     return (
-        <> {isDiscoverRestaurant ? <><div className=" pl-5 flex flex-col gap-5">
+        <> {isDiscoverRestaurant ? <><div className=" pl-5 flex flex-col gap-5 bg-[#dad7cd]">
             <h1 className=' text-xl md:text-3xl text-black'>{t("body.discover")}</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>

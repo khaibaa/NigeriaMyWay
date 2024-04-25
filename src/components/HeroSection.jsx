@@ -6,7 +6,7 @@ import CarouselCard from "./DisplayCard"; // Import a custom component
 import defaultImg from "../assets/defaultImage.jpeg" // Import a default image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesome icon library
 import { faClose, faRectangleXmark, faX } from "@fortawesome/free-solid-svg-icons"; // Import a specific FontAwesome icon
-import myWay from "@/assets/ngn_my_way.jpeg"
+import myWay from "@/assets/ngn_my_way.png"
 import {useTranslation} from "react-i18next";
 
 
@@ -94,7 +94,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
 
 
     return (
-        <div className="pl-5 pr-5 pb-5">
+        <div className="pl-5 pr-5 pb-5 bg-[#dad7cd]">
             <div className="relative">
 
                 {/* Fixed menu for small screens */}

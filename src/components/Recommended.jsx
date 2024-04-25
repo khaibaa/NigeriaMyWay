@@ -26,7 +26,7 @@ function Recommended({ places, isRecommended }) {
   const [lng,setLng] = useState(0)
 
 
-   const fetchAttractions = async (lat,lng) => {
+   const fetchAttractions = async (lat = "9.148259269999999" ,lng = "7.509017516973493") => {
      console.log("Fetching attractions...");
  
      const options = {
@@ -58,7 +58,7 @@ function Recommended({ places, isRecommended }) {
    }
 
    useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
+     navigator.geolocation.getCurrentPosition(
       (position) => {
         setUserLocation({
           latitude: position.coords.latitude,
@@ -105,7 +105,7 @@ function Recommended({ places, isRecommended }) {
   return (
     <>
       {isRecommended ? (
-        <div className=" pl-5 flex flex-col gap-5">
+        <div className=" pl-5 flex flex-col gap-5 bg-[#dad7cd]">
           <h1 className=" text-xl md:text-3xl text-black">{t("nav.recommended")}</h1>
           <Carousel>
             <CarouselContent className=" w-[300px]">
