@@ -6,6 +6,8 @@ import LoadingSpinner from "@/components/ui/loading.jsx"
 import DiscoverRestaurant from "@/components/DiscoverRestaurant.jsx"
 import supabase from "@/config/supabaseClient.js"
 import {useTranslation} from "react-i18next";
+ import NewAfrikaShrine from "@/components/banner.jsx"
+    
 
 export default function Home() {
     const [places, setPlaces] = useState([])
@@ -78,6 +80,9 @@ export default function Home() {
                                 places={places} // Pass places data to Recommended component
                                 isRecommended={isRecommended} // Pass isRecommended state to Recommended component
                             />
+                            <div className="p-5 " >
+                            <NewAfrikaShrine />
+                            </div>
                             <TopDestinations
                                 places={places} // Pass places data to TopDestinations component
                                 isTopDestinations={isTopDestinations} // Pass isTopDestinations state to TopDestinations component

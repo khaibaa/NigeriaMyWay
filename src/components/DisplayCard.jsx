@@ -14,7 +14,7 @@ function CarouselCard(props) {
 
   const whatsAppMsgLink = `https://wa.me/${whatsAppNumber}?text=Hello%20I%20want%20to%20request%20a%20tour%20guide%20for%20${props.title}`
 
-  const googleMapsLink = `https://www.google.com/maps/search/${props?.location?.street1}${props?.location?.street2 && props?.location?.street2}/@${props.longitude},${props.latitude}`
+  const googleMapsLink = `https://www.google.com/maps/search/${props?.location?.street1 ?? props?.title}${props?.location?.street2 ? props?.location?.street2 : ''}/@${props.longitude},${props.latitude}`
 
   const truncateDescription = () => {
     let description = props.description

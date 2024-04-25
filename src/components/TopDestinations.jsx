@@ -19,7 +19,7 @@ export default function TopDestinations({ places, isTopDestinations }) {
     const {t} = useTranslation("common");
 
     return (
-        <>{isTopDestinations ? <><div className=" pl-5 flex flex-col gap-5">
+        <>{isTopDestinations ? <><div className=" pl-5 flex flex-col gap-5 bg-[#dad7cd]">
             <h1 className=' text-xl md:text-3xl text-black'>{t("body.top")}</h1>
             <Carousel>
                 <CarouselContent className=' w-[300px]'>

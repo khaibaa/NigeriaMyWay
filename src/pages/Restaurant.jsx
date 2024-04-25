@@ -37,7 +37,7 @@ export default function Restaurant() {
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
-                <div className="pb-5 box-border h-full">
+                <div className="pb-5 box-border h-full bg-[#dad7cd]">
                     <div className=" mb-36">
                         <h1 className=" text-2xl mt-5 md:text-5xl mb-5 ml-4 font-extrabold">Search Restaurants </h1>
                         <div className=" grid sm:grid-cols-2 md:grid-cols-4 md:gap-5 gap-5">
