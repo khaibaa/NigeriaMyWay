@@ -11,7 +11,7 @@ function Footer() {
     return (
         <div className="">
             <div className=" w-full h-[2px] bg-white"></div>
-            <div className="flex md:flex md:justify-between pt-5 pl-5">
+            <div className="flex md:flex md:justify-between pt-5 pl-5 bg-[#dad7cd]">
                 <div className="text-center leading-8 h-40 w-72 ">
                     <h1 className=" text-2xl font-extrabold">{t("footer.support")}</h1>
                     <ul>
