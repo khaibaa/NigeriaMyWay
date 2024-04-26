@@ -12,7 +12,7 @@ import { useEffect, useState } from "react"
 
 function Header() {
     const navigate = useNavigate()
-    const { isSession, setIsSession } = useState()
+    const { isSession, setIsSession } = useState(false)
 
 
     //navigate to login page when the login button is clicked
@@ -33,13 +33,15 @@ function Header() {
 
     useEffect(() => {
         async function authChange() {
-            supabase.auth.onAuthStateChange((session) => {
+            supabase.auth.onAuthStateChange((_, session) => {
+                console.log(session)
                 if (session) {
                     setIsSession(true)
                 } else {
                     setIsSession(false)
                 }
             })
+
         }
         authChange()
     }, [])

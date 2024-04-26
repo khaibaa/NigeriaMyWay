@@ -5,9 +5,11 @@ import { useState, useEffect } from "react"
 import LoadingSpinner from "@/components/ui/loading.jsx"
 import DiscoverRestaurant from "@/components/DiscoverRestaurant.jsx"
 import supabase from "@/config/supabaseClient.js"
-import {useTranslation} from "react-i18next";
- import NewAfrikaShrine from "@/components/banner.jsx"
-    
+import { useTranslation } from "react-i18next";
+import NewAfrikaShrine from "@/components/banner.jsx"
+import { Button } from "@/components/ui/button.jsx"
+import { useNavigate } from "react-router-dom"
+
 
 export default function Home() {
     const [places, setPlaces] = useState([])
@@ -16,8 +18,10 @@ export default function Home() {
     const [isDiscoverRestaurant, setIsDiscoverRestaurant] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [restaurants, setRestaurants] = useState([])
-    
-    const {t} = useTranslation("common");
+
+    const navigate = useNavigate()
+
+    const { t } = useTranslation("common");
     //fetch attraction data from supabase
     useEffect(() => {
         const fetchPlaces = async () => {
@@ -81,7 +85,7 @@ export default function Home() {
                                 isRecommended={isRecommended} // Pass isRecommended state to Recommended component
                             />
                             <div className="p-5 " >
-                            <NewAfrikaShrine />
+                                <NewAfrikaShrine />
                             </div>
                             <TopDestinations
                                 places={places} // Pass places data to TopDestinations component
@@ -91,6 +95,7 @@ export default function Home() {
                                 restaurants={restaurants} // Pass restaurants data to DiscoverRestaurant component
                                 isDiscoverRestaurant={isDiscoverRestaurant} // Pass isDiscoverRestaurant state to DiscoverRestaurant component
                             />
+                            <h1 className=" pl-8 "><Button className=' bg-[#344E41] text-white hover:bg-white hover:text-black border-2 border-[#344E41]' onClick={() => { navigate("/submit-attraction") }}>Post Attraction For Review</Button></h1>
                         </div>
                     </div>
                 </>
