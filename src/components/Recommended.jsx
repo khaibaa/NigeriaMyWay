@@ -2,7 +2,7 @@
 
 // This component is used to display a carousel of attractions within 10 miles
 
-import React,  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CarouselCard from "./DisplayCard.jsx";
 import {
   Carousel,
@@ -19,46 +19,43 @@ import axios from 'axios';
 // The component receives places and isRecommended as props from HeroSection.jsx
 function Recommended({ places, isRecommended }) {
   const [userLocation, setUserLocation] = useState({});
-  const [topAttractions, setTopAttractions] = useState([]);
   const [tripPlaces, setTripPlaces] = useState([]);
   const { t } = useTranslation("common");
-  const [lat,setLat] = useState(0)
-  const [lng,setLng] = useState(0)
 
 
-   const fetchAttractions = async (lat = "9.148259269999999" ,lng = "7.509017516973493") => {
-     console.log("Fetching attractions...");
- 
-     const options = {
-       method: 'GET',
-       url: 'https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng',
-       params: {
-         longitude: lng,
-         latitude: lat,
-         lunit: 'km',
-         limit: "10",
-         currency: 'USD',
-         distance: "10",
-         lang: 'en_US'
-       },
-       headers: {
-         'X-RapidAPI-Key': '5669b8537fmsh4e9efbbc1c1db15p19a08bjsn0757875ca42d',
-         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-       }
-     };
-     try {
-       const response = await axios.request(options);
-       console.log(response.data.data);
+  const fetchAttractions = async (lat, lng) => {
+    console.log("Fetching attractions...");
+
+    const options = {
+      method: 'GET',
+      url: 'https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng',
+      params: {
+        longitude: lng,
+        latitude: lat,
+        lunit: 'km',
+        limit: "10",
+        currency: 'USD',
+        distance: "10",
+        lang: 'en_US'
+      },
+      headers: {
+        'X-RapidAPI-Key': '5669b8537fmsh4e9efbbc1c1db15p19a08bjsn0757875ca42d',
+        'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+      }
+    };
+    try {
+      const response = await axios.request(options);
+      console.log(response.data.data);
       //  console.log("Before: ", tripPlaces);
-       setTripPlaces(response.data.data)
+      setTripPlaces(response.data.data)
       //  console.log("After: ", tripPlaces);
-     } catch (error) {
-       console.error(error);
-     }
-   }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-   useEffect(() => {
-     navigator.geolocation.getCurrentPosition(
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
       (position) => {
         setUserLocation({
           latitude: position.coords.latitude,
@@ -69,10 +66,14 @@ function Recommended({ places, isRecommended }) {
         console.error('Error getting user location:', error);
       }
     );
-    console.log (userLocation)
-    fetchAttractions(userLocation.latitude,userLocation.longitude)
+  }, []);
 
-   }, [])
+  useEffect(() => {
+    if (userLocation.latitude && userLocation.longitude) {
+      console.log(userLocation);
+      fetchAttractions(userLocation.latitude, userLocation.longitude);
+    }
+  }, [userLocation]);
   // Function to calculate the distance between two points
   function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Earth's radius in kilometers
@@ -81,9 +82,9 @@ function Recommended({ places, isRecommended }) {
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
@@ -125,18 +126,19 @@ function Recommended({ places, isRecommended }) {
                 // Display the top attractions if there are no attractions within 10 miles
                 tripPlaces?.map((place, index) => {
                   return (
-                  <CarouselItem key={index}>
-                    <CarouselCard
-                      title={place?.name}
-                      description={place?.description || "No description available"}
-                      image={place.photo?.images?.original.url || defaultImg}
-                      category={place?.category?.name || " No category available"}
-                      location={place?.address_obj}
-                      latitude={place?.latitude}
-                      longitude={place?.longitude}
-                    />
-                  </CarouselItem>
-                )})
+                    <CarouselItem key={index}>
+                      <CarouselCard
+                        title={place?.name}
+                        description={place?.description || "No description available"}
+                        image={place.photo?.images?.original.url || defaultImg}
+                        category={place?.category?.name || " No category available"}
+                        location={place?.address_obj}
+                        latitude={place?.latitude}
+                        longitude={place?.longitude}
+                      />
+                    </CarouselItem>
+                  )
+                })
               )}
             </CarouselContent>
             <CarouselPrevious />

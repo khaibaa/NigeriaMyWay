@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import ContactUs from "./pages/ContactUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Root from "./pages/Root";
+import SubmitPlace from "./pages/SubmitPlace";
 
 // Create the router configuration
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         path: "/t&c",
         element: <TermsAndConditions />,
       },
+      {
+        path: "submit-attraction",
+        element: <SubmitPlace />
+      }
     ]
   },
   {

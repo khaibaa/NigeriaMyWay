@@ -6,13 +6,13 @@ import { Button } from "./ui/button"
 import supabase from "@/config/supabaseClient"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRightToBracket, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from "react"
 
 
 function Header() {
     const navigate = useNavigate()
-    const { isSession, setIsSession } = useState()
+    const [isSession, setIsSession] = useState(false)
 
 
     //navigate to login page when the login button is clicked
@@ -33,25 +33,28 @@ function Header() {
 
     useEffect(() => {
         async function authChange() {
-            supabase.auth.onAuthStateChange((session) => {
+            supabase.auth.onAuthStateChange((_, session) => {
+                console.log(session)
                 if (session) {
                     setIsSession(true)
                 } else {
                     setIsSession(false)
                 }
             })
+
         }
         authChange()
     }, [])
 
     return (
-        <div className='border-1 mt-4 h-12 p-2 rounded-md flex justify-around bg-[#dad7cd]'>
-            <Link to="/"><p className=' font-rubik font-extrabold text-3xl'>NigeriaMyWay</p></Link>
+        <div className='border-1 mt-4 h-12 p-2 rounded-md flex justify-between bg-[#dad7cd]'>
+            <Link to="/"><p className=' font-rubik md:pl-24 font-extrabold text-3xl'>NigeriaMyWay</p></Link>
             <div className=' flex gap-3'>
                 <Navbar />
-                {isSession ? <><Button onClick={() => { signOut() }} className=' bg-white -mt-1 h-17 w-18'><FontAwesomeIcon icon={faRightToBracket} /></Button></> : <><Button onClick={() => { logIn() }} className=' bg-[#344E41] text-white hover:bg-white hover:text-black border-2 border-[#344E41] -mt-1 h-17 w-18'>Log In</Button>
-                    <Button onClick={() => { signUp() }} className=' bg-[#344E41] text-white hover:bg-white hover:text-black border-2 border-[#344E41] -mt-1 h-17 w-18'>Sign up</Button></>}
-
+                <div className=" hidden sm:contents">
+                    {isSession ? <><Button onClick={() => { signOut() }} className=' bg-white -mt-1 h-17 w-18'><FontAwesomeIcon icon={faRightToBracket} /></Button></> : <><Button onClick={() => { logIn() }} className=' bg-[#344E41] text-white hover:bg-white hover:text-black border-2 border-[#344E41] -mt-1 h-17 w-18'>Log In</Button>
+                        <Button onClick={() => { signUp() }} className=' bg-[#344E41] text-white hover:bg-white hover:text-black border-2 border-[#344E41] -mt-1 h-17 w-18'>Sign up</Button></>}
+                </div>
             </div>
         </div>
     )

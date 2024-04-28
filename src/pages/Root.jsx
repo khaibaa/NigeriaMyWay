@@ -16,7 +16,7 @@ export default function Root() {
 
             {/* Render the following components if user is signed in */}
             <Header />
-            <div className=" w-full  h-10 flex-col items-end text-right">
+            <div className=" w-full h-10 flex-col items-end text-right">
                 <label className=" text-lg font-bold" htmlFor="states">Select State: &nbsp;</label>
                 <select className=" border-2 mr-5" defaultValue="abuja" value={state} onChange={(event) => { changeState(event) }} name="states" id="states">
                     <option className="relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" value="abuja">Abuja</option>
