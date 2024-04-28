@@ -35,28 +35,22 @@ export default function SignUp() {
     // Function to handle form submission
     const onSubmit = async (datas) => {
         setIsLoading(true)
-        try {
-            // Sign up the user using Supabase authentication
-            const { data, error } = await supabase.auth.signUp({
-                email: datas.email,
-                password: datas.password,
-            });
-            if (error) {
-                // Set error state if there's an error
-                setIsError(true)
-                setError("Try again later");
-            } else if (data) {
-                // Clear error state and navigate to the home page on successful sign-up
-                setIsError(false)
-                setSuccess("Verification email sent. Please check your email to verify your account.")
-                setIsSuccess(true)
-            }
-        } catch (err) {
-            // Set error state and log the error if an unexpected error occurs
-            setIsError(true);
-            setError('An unexpected error occurred');
-            console.error(err);
+        // Sign up the user using Supabase authentication
+        const { data, error } = await supabase.auth.signUp({
+            email: datas.email,
+            password: datas.password,
+        });
+        if (error) {
+            // Set error state if there's an error
+            setIsError(true)
+            setError("Try again later");
+        } else if (data) {
+            // Clear error state and navigate to the home page on successful sign-up
+            setIsError(false)
+            setSuccess("Verification email sent. Please check your email to verify your account.")
+            setIsSuccess(true)
         }
+
         setIsLoading(false)
     };
 

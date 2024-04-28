@@ -2,10 +2,10 @@
 //contains links to various informative pages of the site
 
 import { Link } from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
-    const {t} = useTranslation("common");
+    const { t } = useTranslation("common");
 
 
     return (

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react"
 import LoadingSpinner from "@/components/ui/loading.jsx"
 import DiscoverRestaurant from "@/components/DiscoverRestaurant.jsx"
 import supabase from "@/config/supabaseClient.js"
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import NewAfrikaShrine from "@/components/banner.jsx"
 import { Button } from "@/components/ui/button.jsx"
 import { useNavigate } from "react-router-dom"
@@ -21,7 +21,7 @@ export default function Home() {
 
     const navigate = useNavigate()
 
-    const { t } = useTranslation("common");
+    // const { t } = useTranslation("common");
     //fetch attraction data from supabase
     useEffect(() => {
         const fetchPlaces = async () => {
@@ -72,7 +72,7 @@ export default function Home() {
                 <LoadingSpinner /> // Render a loading spinner if isLoading is true
             ) : (
                 <>
-                    <div className="pb-5 box-border h-full">
+                    <div className="pb-5 overflow-x-hidden box-border h-full">
                         <HeroSection
                             setIsRecommended={setIsRecommended} // Prop to set isRecommended state
                             setIsTopDestinations={setIsTopDestinations} // Prop to set isTopDestinations state

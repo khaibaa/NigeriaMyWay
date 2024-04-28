@@ -37,30 +37,25 @@ export default function Login() {
     const onSubmit = async (datas) => {
         setIsLoading(true); // Set the loading state to true before submitting
 
-        try {
-            const { data, error: authError } = await supabase.auth.signInWithPassword({
-                email: datas.email,
-                password: datas.password,
-            });
+        const { data, error: authError } = await supabase.auth.signInWithPassword({
+            email: datas.email,
+            password: datas.password,
+        });
 
-            if (authError) {
-                setIsError(true); // Set the error state to true if there's an authentication error
-                if (authError.message === 'Invalid login credentials') {
-                    setError('Invalid login details'); // Set a specific error message for invalid credentials
-                } else {
-                    setError('An unexpected error occurred'); // Set a generic error message for other errors
-                }
-                console.error(authError); // Log the authentication error
-            } else if (data) {
-                setIsError(false); // Reset the error state if authentication is successful
-                console.log(data); // Log the authentication data
-                navigate('/', { replace: true }); // Navigate to the root path and replace the current entry in the history
+        if (authError) {
+            setIsError(true); // Set the error state to true if there's an authentication error
+            if (authError.message === 'Invalid login credentials') {
+                setError('Invalid login details'); // Set a specific error message for invalid credentials
+            } else {
+                setError('An unexpected error occurred'); // Set a generic error message for other errors
             }
-        } catch (err) {
-            setIsError(true); // Set the error state to true if there's an unexpected error
-            setError('An unexpected error occurred'); // Set a generic error message
-            console.error(err); // Log the unexpected error
+            console.error(authError); // Log the authentication error
+        } else if (data) {
+            setIsError(false); // Reset the error state if authentication is successful
+            console.log(data); // Log the authentication data
+            navigate('/', { replace: true }); // Navigate to the root path and replace the current entry in the history
         }
+
 
         setIsLoading(false); // Set the loading state to false after submitting
     };

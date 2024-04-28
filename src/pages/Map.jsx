@@ -1,67 +1,110 @@
-import GoogleMapReact from "google-map-react";
-import { useState, useEffect } from "react";
-import supabase from "@/config/supabaseClient.js";
-import LoadingSpinner from "@/components/ui/loading";
+
+import GoogleMapReact from 'google-map-react';
+import { Paper, useMediaQuery } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import supabase from '@/config/supabaseClient';
+import { LocationOn } from '@mui/icons-material';
 
 export default function GoogleMap() {
-    const [coordinates, setCoordinates] = useState({});
-    const [restaurants, setRestaurants] = useState([]);
-    const [isLoading, setIsLoading] = useState(false)
+
+    const [coords, setCoords] = useState({});
+    const [places, setPlaces] = useState([]);
+    const [bounds, setBounds] = useState(null);
+
+    const matches = useMediaQuery('(min-width:600px)');
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+            setCoords({ lat: latitude, lng: longitude });
+        });
+    }, []);
 
     useEffect(() => {
         const fetchRestaurants = async () => {
-            try {
-                setIsLoading(true); // Set the loading state to true before fetching data
 
-                const { data: fetchedData, error } = await supabase
-                    .from('Restaurants') // Fetch data from the 'Restaurants' table in Supabase
-                    .select('*'); // Select all columns
+            const { data: fetchedData, error } = await supabase
+                .from('Restaurants') // Fetch data from the 'Restaurants' table in Supabase
+                .select('*'); // Select all columns
 
-                if (error) {
-                    console.error(error); // Log any errors that occurred during fetching
-                } else {
-                    setRestaurants(fetchedData); // Update the 'restaurants' state with the fetched data
-                }
-            } catch (err) {
-                console.log(err.message); // Log any unexpected errors that occurred
+            if (error) {
+                console.error(error); // Log any errors that occurred during fetching
+            } else {
+                setPlaces(fetchedData); // Update the 'restaurants' state with the fetched data
             }
-
-            setIsLoading(false); // Set the loading state to false after fetching data
+            // Set the loading state to false after fetching data
         };
 
         fetchRestaurants(); // Call the fetchRestaurants function when the component mounts
     }, []);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setCoordinates({
-                    lat: position.coords.latitude, // Update the 'coordinates' state with the latitude
-                    lng: position.coords.longitude, // Update the 'coordinates' state with the longitude
+        if (bounds) {
+
+            getPlacesData(bounds.sw, bounds.ne)
+                .then((data) => {
+                    setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
                 });
-            }
-        );
-    }, []); // This effect runs only once when the component mounts
+        }
+    }, [bounds]);
+
 
     return (
-        <>{isLoading ? <LoadingSpinner /> : <div className="w-full flex mb-36 gap-14 h-[500px] ">
+        <div className="w-full h-[85vh]">
             <GoogleMapReact
-                // Provide the Google Maps API key
                 bootstrapURLKeys={{ key: "AIzaSyBCE0zZ_hwb0YrUVfKr8PRc9SaqJ5eBPWY" }}
-                // Set the current center default center coordinates of the map
-                defaultCenter={coordinates}
-                center={coordinates}
+                defaultCenter={coords}
+                center={coords}
                 defaultZoom={14}
                 margin={[50, 50, 50, 50]}
-                options={""}
-                // Callback function triggered when the map is moved or zoomed
+                options={{ disableDefaultUI: true, zoomControl: true }}
                 onChange={(e) => {
-                    // Update the coordinates state with the new center coordinates
-                    setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+                    setCoords({ lat: e.center.lat, lng: e.center.lng });
+                    setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
                 }}
             >
-                {/* ToDo: Add markers for each restaurant */}
+                {places.length && places.map((place, i) => (
+                    <div
+                        className="absolute -translate-x-1/2 -translate-y-1/2 z-20 hover:z-30"
+                        lat={Number(place.latitude)}
+                        lng={Number(place.longitude)}
+                        key={i}
+                    >
+                        {!matches
+                            ? <LocationOn color="primary" fontSize="large" />
+                            : (
+                                <Paper elevation={3} className="p-10 flex flex-col justify-center w-full">
+                                    <img
+                                        className="cursor-pointer"
+                                        src={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
+                                    />
+                                </Paper>
+                            )}
+                    </div>
+                ))}
+
             </GoogleMapReact>
-        </div>}</>
-    );
+        </div>
+    )
+}
+
+async function getPlacesData(sw, ne) {
+    try {
+        const { data: { data } } = await axios.get(`https://travel-advisor.p.rapidapi.com/attractions/list-in-boundary`, {
+            params: {
+                bl_latitude: sw.lat,
+                bl_longitude: sw.lng,
+                tr_longitude: ne.lng,
+                tr_latitude: ne.lat,
+            },
+            headers: {
+                'x-rapidapi-key': "5669b8537fmsh4e9efbbc1c1db15p19a08bjsn0757875ca42d",
+                'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
+            },
+        });
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 }

@@ -5,9 +5,9 @@ import AddIcon from "../assets/AddIcon.svg" // Import an SVG icon
 import CarouselCard from "./DisplayCard"; // Import a custom component
 import defaultImg from "../assets/defaultImage.jpeg" // Import a default image
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import FontAwesome icon library
-import { faClose, faRectangleXmark, faX } from "@fortawesome/free-solid-svg-icons"; // Import a specific FontAwesome icon
+import { faClose } from "@fortawesome/free-solid-svg-icons"; // Import a specific FontAwesome icon
 import myWay from "@/assets/ngn_my_way.png"
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 
 // Define the HeroSection functional component
@@ -19,7 +19,7 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
     const [displayCulture, setDisplayCulture] = useState(false)
     const [displayParks, setDisplayParks] = useState(false)
     const [showClose, setShowClose] = useState(false)
-    const {t} = useTranslation("common");
+    const { t } = useTranslation("common");
 
 
     // Function to display all places
@@ -132,19 +132,22 @@ function HeroSection({ places, setIsRecommended, setIsTopDestinations, setIsDisc
                     <div className=" mb-8 justify-center items-center gap-x-2 flex-wrap gap-y-2 hidden mt-20 sm:flex">
                         {/* Filter items for desktop with fuctions that were defined above */}
                         <div className="flex text-white gap-x-0 ">
-                            <button onClick={() => { 
+                            <button onClick={() => {
                                 setShowClose(true)
                                 handleAll()
-                                }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.all")}</span></button>
-                            <button onClick={() => { 
+                            }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.all")}</span></button>
+                            <button onClick={() => {
                                 setShowClose(true)
-                                handleParks() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.parks")}</span></button>
-                            <button onClick={() => { 
+                                handleParks()
+                            }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.parks")}</span></button>
+                            <button onClick={() => {
                                 setShowClose(true)
-                                handleMalls() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.malls")}</span></button>
-                            <button onClick={() => { 
+                                handleMalls()
+                            }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.malls")}</span></button>
+                            <button onClick={() => {
                                 setShowClose(true)
-                                handleCulture() }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.culture")}</span></button> 
+                                handleCulture()
+                            }} className="py-2 px-5 flex gap-x-1 font-medium   transition-all relative hover:border-b border-black justify-center items-center"><span className="text-2xl ml-0 xl:text-h6 relative mix-blend-exclusion  z-10">{t("nav.culture")}</span></button>
 
                         </div>
                         {/* icon to remove filters when cliked  */}
